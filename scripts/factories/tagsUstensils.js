@@ -4,7 +4,8 @@ function factory(){
     let cardUstensils= "";
     console.log("ustensils", ustensils);
     for(let ustensil of ustensils){
-        cardUstensils += `
+        cardUstensils += 
+        `
         <li>${ustensil}</li>
         `
     }

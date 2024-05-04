@@ -6,7 +6,7 @@ export function tagAppliance(data){
     console.log("appareil", appliance);
     for(let appliances of appliance){
       cardAppliance += `
-      <li>${appliances.appliances}</li>
+      <li>${appliances}</li>
       `
     }
     return `

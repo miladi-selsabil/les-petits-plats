@@ -16,8 +16,8 @@ export function cardFactory(data) {
             cardIngredients += `
                 <li class="card-ingredients-list-item">
                     <span class="card-ingredients-list-item-ingredient">${ingredient.ingredient.charAt(0).toUpperCase() + ingredient.ingredient.slice(1)}</span>
-                    <span class="card-ingredients-list-item-quantity">${ingredientQuantity}</span>
-                    <span class="card-ingredients-list-item-unit">${ingredientUnit}</span>
+                    <span class="card-ingredients-list-item-quantity">${ingredientQuantity}${ingredientUnit}</span>
+                    
                 </li>`;
         }
         
@@ -34,15 +34,15 @@ export function cardFactory(data) {
                     </div>
                     <div class="row">
                     <div class="recette">
-                    <p>Recettes</p>
-                    <p>${data.ustensils}</p>
+                    <p class="recette-title">RECETTE</p>
+                 
                     <p class="card-text card-description">${description.replace(
                       /(.{185})..+/,
                       "$1..."
                     )}</p>
                     </div>
                     <div>
-                    <p class="ingredients">INGREDIENTS</p>
+                    <p class="ingredients-title">INGREDIENTS</p>
                         <ul class="card-text list-unstyled" card-ingredients">${cardIngredients}</ul>
                         </div>
                     </div>
