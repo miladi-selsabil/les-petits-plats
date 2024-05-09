@@ -28,7 +28,7 @@ const dd1Input = document.getElementById("dd1-input");
 
 dd1Input.addEventListener("input", function () {
   const inputValue = dd1Input.value.toLowerCase();
-  const dd1ListContainer = document.getElementById("ingredients-list");
+  const dd1ListContainer = document.getElementById("dd1-list");
   const dd1Options = dd1ListContainer.querySelectorAll("li");
   dd1Options.forEach((option) => {
     const optionText = option.textContent.toLowerCase();
@@ -42,7 +42,7 @@ const dd2Input = document.getElementById("dd2-input");
 
 dd2Input.addEventListener("input", function () {
   const inputValue = dd2Input.value.toLowerCase();
-  const dd2ListContainer = document.getElementById("appareil-list");
+  const dd2ListContainer = document.getElementById("dd2-list");
   const dd2Options = dd2ListContainer.querySelectorAll("li");
 
   dd2Options.forEach((option) => {
@@ -57,7 +57,7 @@ const dd3Input = document.getElementById("dd3-input");
 
 dd3Input.addEventListener("input", function () {
   const inputValue = dd3Input.value.toLowerCase();
-  const dd3ListContainer = document.getElementById("ustensils-list");
+  const dd3ListContainer = document.getElementById("dd3-list");
   const dd3Options = dd3ListContainer.querySelectorAll("li");
 
   dd3Options.forEach((option) => {

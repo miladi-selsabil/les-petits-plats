@@ -1,10 +1,11 @@
 
-export function tagAppliance(data){
-  const {id, appliance} = data;
+export function tagAppliance(appliance){
   function factory(){
     let cardAppliance = "";
-    console.log("appareil", appliance);
-    for(let appliances of appliance){
+    const listAppliance = [...new Set(appliance)].sort();
+    console.log("appareil", listAppliance);
+    for(let appliances of listAppliance){    
+
       cardAppliance += `
       <li>${appliances}</li>
       `
@@ -13,6 +14,6 @@ export function tagAppliance(data){
     ${cardAppliance}
     `;
   }
-  return{appliance, cardAppliance: factory(), factory}
+  return{appliance, factory}
 }
  

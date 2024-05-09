@@ -3,131 +3,132 @@ import { tagFactory } from "./factories/tags.js";
 import { recipes } from "./data/recipes.js";
 import { tagAppliance } from "./factories/tagsApplian.js";
 import { tagsUstensils } from "./factories/tagsUstensils.js";
-import { filterByIngredients } from "./Components/search.js";
-import { filterByUstensils } from "./Components/search.js";
+import { filterByUstensils, filterByIngredients, filterByAppliances } from "./Components/test.js";
 const resultFilter = {
   recipes: [],
 };
 async function init(array) {
   const cardContainer = document.querySelector(".card_container");
-  const ingredientContainer = document.querySelector("#ingredients-list");
-  const applianceContainer = document.querySelector("#appareil-list");
-  const ustensilContainer = document.querySelector("#ustensils-list");
-  const search = document.querySelector("form");
-  const result = document.querySelector(".resultat");
-  const resultUst = document.querySelector(".resultat-us");
+  const ingredientContainer = document.querySelector(".ingredients-list");
+  const ustensilContainer = document.querySelector(".ustensils-list");
+  const applianceContainer = document.querySelector(".appareil-list");
 
   let cardsHTML = "";
   let tagsHTML = "";
-  // let tagsApplianceHTML = "";
   let tagsUstensilsHTML = "";
-  let searchHTML = "";
+  let tagsApplianceHTML = "";
   let ingredientsList = [];
-  let appliancesList = [];
   let ustensilsList = [];
-
+  let appliancesList = [];
   array.forEach((recipe) => {
     const cardData = cardFactory(recipe);
-    const tagData = tagFactory(recipe);
-    const tagApp = tagAppliance(recipe);
-    const tagUst = tagsUstensils(recipe);
     cardsHTML += cardData.factory();
-    tagsHTML += tagData.factory();
-    tagsUstensilsHTML += tagUst.factory();
-    // tagsApplianceHTML += tagApp.factory();
     recipe.ingredients.forEach((item) => {
       ingredientsList.push(item.ingredient.toLowerCase());
     });
-
     recipe.ustensils.forEach((item) => {
-      ustensilsList.push(item.ustensil);
+      ustensilsList.push(item);
     });
-    // recipe.appliance.forEach((item) => {
-    //   appliancesList.push(item.appliances.toLowerCase());
-    // });
+
+    appliancesList.push(recipe.appliance.trim().toLowerCase());
+
   });
-   console.log(
-     "Liste des ingrédients avant conversion en Set :",
-     ingredientsList
-   );
-   ingredientsList = [...new Set(ingredientsList)].sort();
-   console.log(
-     "Liste des ingrédients après conversion en Set :",
-     ingredientsList
-   );
-
-
+  const tagData = tagFactory(ingredientsList);
+  tagsHTML += tagData.factory();
+  const tagUst = tagsUstensils(ustensilsList);
+  tagsUstensilsHTML += tagUst.factory();
+  const tagApp = tagAppliance(appliancesList);
+  tagsApplianceHTML += tagApp.factory()
   cardContainer.innerHTML = cardsHTML;
   ingredientContainer.innerHTML = tagsHTML;
   ustensilContainer.innerHTML = tagsUstensilsHTML;
+  applianceContainer.innerHTML = tagsApplianceHTML;
+
   function updateRecipeDisplay() {
-    let cardsHTML = "";
+    if (resultFilter.recipes.length === 0) {
+      console.log("No results to display.");
+    }
+   let cardsHTML = "";
+   resultFilter.recipes.forEach((recipe) => {
+     const cardData = cardFactory(recipe);
+     cardsHTML += cardData.factory();
+   });
 
-    resultFilter.recipes.forEach((recipe) => {
-      const cardData = cardFactory(recipe);
-      cardsHTML += cardData.factory();
-    });
-
-    cardContainer.innerHTML = cardsHTML;
+   cardContainer.innerHTML = cardsHTML;
   }
+
   resultFilter.recipes = array;
 
-  //écouteur d'événement pour sélectionner un ingrédient et filtrer les recettes
-  ingredientContainer.addEventListener("click", (event) => {
-    const target = event.target;
-    if (target.tagName === "LI") {
-      handleIngredientSelection(target.textContent);
+  let activeTags = [];
+
+  function handleSelection(tagText, type) {
+    const normalizedTagText = tagText.toLowerCase();
+
+    /*Verifie si le tag est deja actif*/
+    if (!activeTags.includes(normalizedTagText)) {
+      const newTag = createTag(normalizedTagText, type);
+      document.getElementById("filters-selected").appendChild(newTag);
+      activeTags.push(normalizedTagText); 
+      filterRecipesByTag(normalizedTagText, type);
+      updateRecipeDisplay();
     }
-  });
-
-  // Gère la sélection d'un ingrédient
-  function handleIngredientSelection(ingredient) {
-    const newTag = createIngredientTag(ingredient);
-    document.getElementById("selected-ingredients").appendChild(newTag);
-    resultFilter.recipes = filterByIngredients(
-      resultFilter.recipes,
-      ingredient
-    );
-    updateRecipeDisplay();
   }
 
-  // tag visuel pour l'ingrédient avec un bouton de suppression
-  function createIngredientTag(ingredient) {
-    const newTag = document.createElement("div");
-    newTag.classList.add("ingredient-tag");
-    newTag.textContent = ingredient;
-
-    const removeBtn = createRemoveButton(newTag);
-    newTag.appendChild(removeBtn);
-    return newTag;
-  }
-
-  //bouton pour supprimer un tag visuel
-  function createRemoveButton(tagElement) {
-    const removeBtn = document.createElement("button");
-    removeBtn.classList.add("remove-tag");
-    removeBtn.innerHTML = "&times;";
-    removeBtn.addEventListener("click", () => {
-      tagElement.remove();
+  function createTag(tagText, type) {
+    const tagDiv = document.createElement("div");
+    tagDiv.className = `tag tag-${type}`;
+    tagDiv.textContent = tagText;
+    tagDiv.addEventListener("click", () => {
+      tagDiv.remove();
       resultFilter.recipes = array;
       updateRecipeDisplay();
-    });
-    return removeBtn;
+    })
+    return tagDiv;
   }
 
-  ustensilContainer.addEventListener("click", (event) => {
-    const target = event.target;
-    console.log(resultFilter.recipes.length);
-    if (target.tagName === "LI") {
-      const ingredientTag = target.textContent;
-      resultFilter.recipes = filterByUstensils(
-        resultFilter.recipes,
-        ingredientTag
-      );
+  function filterRecipesByTag(tag, type) {
+    console.log("Filtering recipes by:", tag, "of type:", type);
+    switch (type) {
+      case "ingredient":
+        resultFilter.recipes = filterByIngredients(resultFilter.recipes, tag);
+        break;
+      case "ustensil":
+        resultFilter.recipes = filterByUstensils(resultFilter.recipes, tag);
+        break;
+      case "appliance":
+        resultFilter.recipes = filterByAppliances(resultFilter.recipes, tag);
+        break;
     }
-    console.log(resultFilter.recipes.length);
+    console.log("Filtered recipes:", resultFilter.recipes);
+  }
+
+
+  /* Ajout des écouteurs d'événements pour les tags*/
+  ingredientContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+      handleSelection(event.target.textContent, "ingredient");
+    }
   });
 
-}
+  ustensilContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+      handleSelection(event.target.textContent, "ustensil");
+    }
+  });
 
+ applianceContainer.addEventListener("click", (event) => {
+   if (event.target.tagName === "LI") {
+     const selectedAppliance = event.target.textContent.toLowerCase().trim();
+     console.log("Selected Appliance:", selectedAppliance);
+     handleSelection(selectedAppliance, "appliance");
+   }
+ });
+
+ 
+
+
+
+
+
+}
 init(recipes);

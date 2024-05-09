@@ -1,13 +1,15 @@
-export function tagFactory(data) {
-  const { id, ingredients } = data;
+export function tagFactory(ingredients) {
+
 
   function factory() {
     let cardIngredients = "";
-    console.log("list", ingredients);
-    for (let ingredient of ingredients) {
-      cardIngredients += `
-      <li>${ingredient.ingredient}</li>`;
       
+      const listIngredients = [...new Set(ingredients)].sort();
+          console.log("list", listIngredients);
+
+    for (let ingredient of listIngredients) {
+      cardIngredients += `
+      <li>${ingredient}</li>`;
     }
 
     return `
@@ -15,7 +17,7 @@ export function tagFactory(data) {
            `;
   }
 
-  return { ingredients, cardIngredients: factory(), factory };
+  return { ingredients, factory };
 }
 
 

@@ -1,17 +1,16 @@
-export function tagsUstensils (data){
-const {ustensils}= data;
-function factory(){
-    let cardUstensils= "";
-    console.log("ustensils", ustensils);
-    for(let ustensil of ustensils){
-        cardUstensils += 
-        `
+export function tagsUstensils(ustensils) {
+  function factory() {
+    let cardUstensils = "";
+    const listUstensils = [...new Set(ustensils)].sort();
+        console.log("ustensils", listUstensils);
+    for (let ustensil of listUstensils) {
+      cardUstensils += `
         <li>${ustensil}</li>
-        `
+        `;
     }
-    return`
+    return `
     ${cardUstensils}
     `;
-}
-return{ustensils, cardUstensils: factory(), factory}
+  }
+  return { ustensils, factory };
 }
