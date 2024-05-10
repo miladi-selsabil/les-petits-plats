@@ -3,7 +3,7 @@ import { tagFactory } from "./factories/tags.js";
 import { recipes } from "./data/recipes.js";
 import { tagAppliance } from "./factories/tagsApplian.js";
 import { tagsUstensils } from "./factories/tagsUstensils.js";
-import { filterByUstensils, filterByIngredients, filterByAppliances } from "./Components/test.js";
+import { filterByUstensils, filterByIngredients, filterByAppliances } from "./Components/search.js";
 const resultFilter = {
   recipes: [],
 };
@@ -31,30 +31,29 @@ async function init(array) {
     });
 
     appliancesList.push(recipe.appliance.trim().toLowerCase());
-
   });
   const tagData = tagFactory(ingredientsList);
   tagsHTML += tagData.factory();
   const tagUst = tagsUstensils(ustensilsList);
   tagsUstensilsHTML += tagUst.factory();
   const tagApp = tagAppliance(appliancesList);
-  tagsApplianceHTML += tagApp.factory()
+  tagsApplianceHTML += tagApp.factory();
   cardContainer.innerHTML = cardsHTML;
   ingredientContainer.innerHTML = tagsHTML;
   ustensilContainer.innerHTML = tagsUstensilsHTML;
   applianceContainer.innerHTML = tagsApplianceHTML;
 
   function updateRecipeDisplay() {
+    let cardsHTML = "";
     if (resultFilter.recipes.length === 0) {
-      console.log("No results to display.");
+      cardsHTML = "pas de recette";
     }
-   let cardsHTML = "";
-   resultFilter.recipes.forEach((recipe) => {
-     const cardData = cardFactory(recipe);
-     cardsHTML += cardData.factory();
-   });
+    resultFilter.recipes.forEach((recipe) => {
+      const cardData = cardFactory(recipe);
+      cardsHTML += cardData.factory();
+    });
 
-   cardContainer.innerHTML = cardsHTML;
+    cardContainer.innerHTML = cardsHTML;
   }
 
   resultFilter.recipes = array;
@@ -68,22 +67,10 @@ async function init(array) {
     if (!activeTags.includes(normalizedTagText)) {
       const newTag = createTag(normalizedTagText, type);
       document.getElementById("filters-selected").appendChild(newTag);
-      activeTags.push(normalizedTagText); 
+      activeTags.push(normalizedTagText);
       filterRecipesByTag(normalizedTagText, type);
       updateRecipeDisplay();
     }
-  }
-
-  function createTag(tagText, type) {
-    const tagDiv = document.createElement("div");
-    tagDiv.className = `tag tag-${type}`;
-    tagDiv.textContent = tagText;
-    tagDiv.addEventListener("click", () => {
-      tagDiv.remove();
-      resultFilter.recipes = array;
-      updateRecipeDisplay();
-    })
-    return tagDiv;
   }
 
   function filterRecipesByTag(tag, type) {
@@ -101,7 +88,38 @@ async function init(array) {
     }
     console.log("Filtered recipes:", resultFilter.recipes);
   }
+  function createTag(text, type) {
+    let tag = document.createElement("div");
+    tag.textContent = text;
+    tag.className = "tag tag-" + type;
+    tag.dataset.tag = text;
+    tag.dataset.type = type;
+    tag.onclick = () => removeTag(tag);
+    return tag;
+  }
 
+  function removeTag(tagElement) {
+    const tagText = tagElement.dataset.tag.toLowerCase();
+    /*Recherche de l'index du tag dans le tableau activeTags */
+    const index = activeTags.indexOf(tagText);
+    /* suppression du tag de la liste active*/
+    if (index > -1) {
+      activeTags.splice(index, 1);
+      tagElement.remove();
+      resetAndApplyFilters();
+    }
+  }
+  /*réinitialiser la liste des recettes affichées et réappliquer les filtres basés sur les tags actifs */
+  function resetAndApplyFilters() {
+    resultFilter.recipes = array.slice();
+    /*Application des filtres pour chaque tag actif */
+    activeTags.forEach((tag) => {
+      const tagElement = document.querySelector(`.tag[data-tag="${tag}"]`);
+      const type = tagElement.dataset.type;
+      filterRecipesByTag(tag, type);
+    });
+    updateRecipeDisplay();
+  }
 
   /* Ajout des écouteurs d'événements pour les tags*/
   ingredientContainer.addEventListener("click", (event) => {
@@ -116,19 +134,12 @@ async function init(array) {
     }
   });
 
- applianceContainer.addEventListener("click", (event) => {
-   if (event.target.tagName === "LI") {
-     const selectedAppliance = event.target.textContent.toLowerCase().trim();
-     console.log("Selected Appliance:", selectedAppliance);
-     handleSelection(selectedAppliance, "appliance");
-   }
- });
-
- 
-
-
-
-
-
+  applianceContainer.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+      const selectedAppliance = event.target.textContent.toLowerCase().trim();
+      console.log("Selected Appliance:", selectedAppliance);
+      handleSelection(selectedAppliance, "appliance");
+    }
+  });
 }
 init(recipes);
