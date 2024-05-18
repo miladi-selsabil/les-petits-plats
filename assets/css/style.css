@@ -4,10 +4,9 @@ font-family: "Manrope", sans-serif;
 font-size: normal;
 
 }
-.container{
-   width: 100%;
-   margin-left: 0;
-   margin-right: 0;
+.main-container{
+    max-width: 100%;
+    padding: 2% 4%;
     background: #EDEDED;
 
 }
@@ -27,20 +26,22 @@ width: 100%;
 }
 .header-txt{
         position: absolute;
-        bottom: 0;
         text-align: center;
+        bottom: 40%;
         width: 100%;
-        top: 0;
         display: flex;
         flex-direction: column;
-         color: yellow;
+         color: #FFD15B;
         align-items: center;
         justify-content: center;
 }
 .title-header{
-    width: 530px;
+    width: 66.25%;
     margin: 0 auto;
+    font-size: 44px;
+    line-height: 60px;
     text-align: center;
+    font-family: anton;
 }
 input{
     width:40%
@@ -48,7 +49,7 @@ input{
 .card_container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     gap: 27px;
     margin-top: 80px;
@@ -58,6 +59,10 @@ input{
     font-size: 18px;
     font-family: "Anton", sans-serif;
 
+}
+#number-recipes{
+    font-size: 21px;
+    font-family: "Anton", sans-serif;
 }
 .dropdown1.open,
 .dropdown2.open,
@@ -206,7 +211,7 @@ input{
     transform: translateX(15px);
 }
 .card_container .card{
-    width: 40%;
+    width: 30%;
     border-radius: 30px;
 }
 .card-body{
@@ -265,6 +270,10 @@ font-family: "Manrope", sans-serif;}
         display: flex;
         justify-content: space-between;
 }
+.tags_dropdown{
+    display: flex;
+    gap: 70px;
+}
 .selected-ingredients {
     display: flex;
     flex-wrap: wrap;
@@ -296,3 +305,110 @@ font-family: "Manrope", sans-serif;}
         flex-wrap: wrap;
         justify-content: space-between;
 }
+.container-search {
+    width: 66.25%;
+}
+.research-field {
+    border-radius: 11px;
+    background: #FFF;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.research-field input {
+    color: #7A7A7A;
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(0.9rem, 1vw, 16px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    height: clamp(52px, 8vw, 72px);
+    border-radius: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+.search-icon {
+    width: 51px;
+    height: 52px;
+    flex-shrink: 0;
+    background: #1B1B1B;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    right: 10px;
+    transition: background-color 0.3s ease-out;
+    cursor: pointer;
+}
+.research-field input[type="text"] {
+    padding-left: clamp(7px, calc(2vw + 6px), 35px);
+    border: none;
+    outline: none;
+}
+#filters-selected{
+    padding-left: clamp(7px, calc(3.5vw + 2px), 102px);
+        width: 100%;
+        background: #EDEDED;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    
+}
+.tag{
+    display: inline-flex;
+        padding: 17px 18px;
+        align-items: center;
+        gap: 60px;
+        border-radius: 10px;
+        background: #FFD15B;
+        color: #000;
+        font-family: Manrope;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        height: 53px;
+}
+@media screen and (min-width: 1600px) {
+    .card-img-top img {
+        height: 400px;}
+   }
+@media screen and  (max-width: 961px){
+        .card_container .card {
+       width: 80%;}
+    .card_container {
+        justify-content: center;
+           }
+    .tags {
+            flex-direction: column;}
+    .tags_dropdown {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+                }
+     .title-header {
+                  
+                    margin: 0 auto;
+                    font-size: 18px;
+                line-height: 20px;
+                }
+        .header-txt {
+            position: absolute;
+            text-align: center;
+            bottom: 80%;}
+         .titre_principal {
+    font-size: 1rem;}
+        .search-icon{
+            right: 0;
+        }
+        .number-container{
+            text-align: center;
+            padding-top: 15px;
+        }
+        
+   }

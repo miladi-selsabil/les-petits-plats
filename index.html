@@ -37,12 +37,24 @@
           CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN SIMPLES ET
           DELICIEUSES
         </h2>
-        <input type="search" id="search" name="search"/>
-      </div>
+ <div class="container-search">
+                    <div class="research-field">
+                        <input id="search" type="text" placeholder="Rechercher une recette, un ingrédient, ...">
+                       
+                        <div class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29" viewBox="0 0 28 29"
+                                fill="none">
+                                <circle cx="10" cy="10.4219" r="9.5" stroke="white" />
+                                <line x1="18.3536" y1="19.0683" x2="27.3536" y2="28.0683" stroke="white" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>      </div>
     </header>
 
-    <div class="container">
+    <div class="main-container">
       <div class="tags">
+        <div class="tags_dropdown">
          <div class="dropdown1">
                 <div class="dd1-visiblepart">
                     <h1>Ingrédients</h1>
@@ -102,6 +114,10 @@
                 </ul>
                 
             </div>
+          </div>
+             <div class="number-container">
+            <h1 id="number-recipes"></h1>
+        </div>
       </div>  
 
           <!-- <div id="selected-ingredients" class="selected-ingredients"></div>
@@ -111,12 +127,9 @@
     </div>
       <div class="card_container"></div>
     </div>
-    <script type="module" src="./scripts/data/recipes.js"></script>
-    <script type="module" src="./scripts/factories/recipesCard.js"></script>
+   
     <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/factories/tags.js"></script>
-    <script type="module" src="./scripts/Components/Dropdown.js"></script>
-
+    
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
