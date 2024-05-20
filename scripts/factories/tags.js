@@ -5,7 +5,6 @@ export function tagFactory(ingredients) {
     let cardIngredients = "";
       
       const listIngredients = [...new Set(ingredients)].sort();
-          console.log("list", listIngredients);
 
     for (let ingredient of listIngredients) {
       cardIngredients += `

@@ -11,23 +11,30 @@ font-size: normal;
 
 }
 .titre_principal{
-   
-    color: white;
+  
+    width: calc(min(100vw, 207px));
+    height: calc(min(100vh, 25.261px))
 }
 .img_header {
 width: 100%;
 }
-.logo {display: flex;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    text-decoration: none;
+.logo {
+    display: flex;
+        align-items: center;
+        position: absolute;
+        top: 5%;
+        text-decoration: none;
+        left: 1%;
 
+}
+header{
+    position: relative;
 }
 .header-txt{
         position: absolute;
         text-align: center;
-        bottom: 40%;
+        bottom: 0%;
+            top: 0%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -305,6 +312,19 @@ font-family: "Manrope", sans-serif;}
         flex-wrap: wrap;
         justify-content: space-between;
 }
+.card-description {
+    color: #1B1B1B;
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    overflow: hidden;
+    max-height: 76px;
+}
+
+.card-description:hover {
+    max-height: 100%;}
 .container-search {
     width: 66.25%;
 }
@@ -351,12 +371,12 @@ font-family: "Manrope", sans-serif;}
     outline: none;
 }
 #filters-selected{
-    padding-left: clamp(7px, calc(3.5vw + 2px), 102px);
         width: 100%;
         background: #EDEDED;
         display: flex;
         gap: 15px;
         flex-wrap: wrap;
+        padding-top: 24px;
     
 }
 .tag{
@@ -378,7 +398,7 @@ font-family: "Manrope", sans-serif;}
     .card-img-top img {
         height: 400px;}
    }
-@media screen and  (max-width: 961px){
+@media screen and  (max-width: 980px){
         .card_container .card {
        width: 80%;}
     .card_container {
@@ -393,16 +413,12 @@ font-family: "Manrope", sans-serif;}
                 }
      .title-header {
                   
-                    margin: 0 auto;
-                    font-size: 18px;
-                line-height: 20px;
+             margin: 0 auto;
+             font-size: 18px;
+             line-height: 20px;
                 }
-        .header-txt {
-            position: absolute;
-            text-align: center;
-            bottom: 80%;}
-         .titre_principal {
-    font-size: 1rem;}
+   
+  
         .search-icon{
             right: 0;
         }
@@ -410,5 +426,10 @@ font-family: "Manrope", sans-serif;}
             text-align: center;
             padding-top: 15px;
         }
+        .titre_principal {
+        
+         width: calc(min(100vw, 107px));
+        height: calc(min(100vh, 15.261px))
+                }
         
    }

@@ -6,7 +6,6 @@ export function tagsUstensils(ustensils) {
         );
 
     const listUstensils = [...new Set(ustensilesNormalises)].sort();
-        console.log("ustensils", listUstensils);
     for (let ustensil of listUstensils) {
       cardUstensils += `
         <li>${ustensil}</li>

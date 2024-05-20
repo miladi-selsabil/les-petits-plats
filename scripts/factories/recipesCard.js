@@ -36,10 +36,7 @@ export function cardFactory(data) {
                     <div class="recette">
                     <p class="recette-title">RECETTE</p>
                  
-                    <p class="card-text card-description">${description.replace(
-                      /(.{185})..+/,
-                      "$1..."
-                    )}</p>
+                    <p class="card-text card-description">${description}</p>
                     </div>
                     <div>
                     <p class="ingredients-title">INGREDIENTS</p>

@@ -30,7 +30,9 @@ dd1Input.addEventListener("input", function () {
   const inputValue = dd1Input.value.toLowerCase();
   const dd1ListContainer = document.getElementById("dd1-list");
   const dd1Options = dd1ListContainer.querySelectorAll("li");
-  let matches = []; // Créer un tableau pour stocker les éléments qui correspondent
+  // Créer un tableau pour stocker les éléments qui correspondent
+  let matches = []; 
+  
 
   dd1Options.forEach((option) => {
     const optionText = option.textContent.toLowerCase();
