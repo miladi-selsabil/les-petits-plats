@@ -42,7 +42,6 @@ async function init(array) {
   }
 
   function filterRecipesByTag(recipes, tag, type) {
-    console.log("Filtering recipes by:", tag, "of type:", type);
 
     switch (type) {
       case "ingredient":
@@ -52,7 +51,6 @@ async function init(array) {
       case "appliance":
         return filterByAppliances(recipes, tag);
       default:
-        console.error("Unknown type:", type);
         return recipes;
     }
   }

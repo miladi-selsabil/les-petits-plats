@@ -46,7 +46,6 @@ dd1Input.addEventListener("input", function () {
   });
 
   // Afficher dans la console la liste des éléments qui correspondent
-  console.log("Matches found:", matches);
 });
 
 
@@ -82,17 +81,4 @@ dd3Input.addEventListener("input", function () {
 });
 
  
-}export function sear(){
-const globalSearch = document.getElementById("search");
-globalSearch.addEventListener("input", () => {
-  const searchText = globalSearch.value.toLowerCase();
-  ["dd1-list", "dd2-list", "dd3-list"].forEach((listId) => {
-    const list = document.getElementById(listId);
-    const items = list.querySelectorAll("li");
-    items.forEach((item) => {
-      const text = item.textContent.toLowerCase();
-      item.style.display = text.includes(searchText) ? "block" : "none";
-    });
-  });
-});
 }
