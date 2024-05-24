@@ -42,7 +42,6 @@ async function init(array) {
   }
 
   function filterRecipesByTag(recipes, tag, type) {
-    console.log("Filtering recipes by:", tag, "of type:", type);
 
     switch (type) {
       case "ingredient":
@@ -52,7 +51,6 @@ async function init(array) {
       case "appliance":
         return filterByAppliances(recipes, tag);
       default:
-        console.error("Unknown type:", type);
         return recipes;
     }
   }
@@ -110,38 +108,31 @@ async function init(array) {
  
   document.getElementById("search").addEventListener("input", (event) => {
     searchText = event.target.value.toLowerCase();
-    if (searchText.length >= 3) {
-      handleSearch(searchText);
-    } else {
-      handleSearch("");
-    }
+    handleSearch();
   });
+ let searchText = "";
+ let filteredRecipes = [];
 
-  let searchText = "";
-  let filteredRecipes = [];
   function handleSearch() {
-    /* Applique d'abord les filtres de tags*/
+    // les filtres de tags.
     refilterRecipes();
-    // Liste temporaire pour les recettes filtrées par recherche textuelle
-    let initialFilteredRecipes = [];
-    for (let i = 0; i < filteredRecipes.length; i++) {
-      let recipe = filteredRecipes[i];
-      if (
-        recipe.name.toLowerCase().includes(searchText) ||
-        recipe.description.toLowerCase().includes(searchText) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.toLowerCase().includes(searchText)
-        )
-      ) {
-        initialFilteredRecipes.push(recipe);
-      }
-    }
 
-    // Mise à jour des recettes filtrées après tous les filtrages
-    resultFilter.recipes = initialFilteredRecipes;
-    displayRecipes(initialFilteredRecipes);
+    // Filtre ensuite par recherche textuelle
+    if (searchText.length >= 3) {
+      filteredRecipes = filteredRecipes.filter(
+        (recipe) =>
+          recipe.name.toLowerCase().includes(searchText) ||
+          recipe.description.toLowerCase().includes(searchText) ||
+          recipe.ingredients.some((ing) =>
+            ing.ingredient.toLowerCase().includes(searchText)
+          )
+      );
+    }
+  // Met à jour les recettes filtrées globalement
+    resultFilter.recipes = filteredRecipes;
+    displayRecipes(resultFilter.recipes);
     updateRecipeCount();
-    handleTags(initialFilteredRecipes);
+    handleTags(resultFilter.recipes);
   }
 
  
