@@ -57,7 +57,7 @@ Ces points doivent absolument être respectés durant le développement :
 
 ## Maquettes :
 
-Lien des maquettes : https://www.figma.com/file/xqeE1ZKlHUWi2Efo8r73NK/UI-Design-Les-Petits-Plats-FR
+Lien des maquettes : https://www.figma.com/design/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0
 
 ---
 
@@ -116,4 +116,4 @@ That's it!
 
 ## Mockups:
 
-Link to mockups: https://www.figma.com/file/xqeE1ZKlHUWi2Efo8r73NK/UI-Design-Les-Petits-Plats-FR
+Link to mockups: https://www.figma.com/design/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0
