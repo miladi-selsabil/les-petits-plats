@@ -6,7 +6,7 @@
 
 ## Description FR :
 
-Ceci est un projet réalisé dans le cadre du programme de formation Développeur Front-end JavaScript React chez [OpenClassrooms](https://openclassrooms.com/fr/paths/516-developpeur-dapplication-javascript-react)
+Ceci est un projet réalisé dans le cadre du programme de formation Développeur Front-end JavaScript React chez [OpenClassrooms](https://openclassrooms.com/fr/paths/877-developpeur-dapplication-javascript-react)
 
 > Développez un algorithme de recherche en JavaScript
 >
@@ -51,19 +51,18 @@ Ces points doivent absolument être respectés durant le développement :
 -   [Visual Studio Code](https://code.visualstudio.com/) - Éditeur de texte
 -   [Bootstrap](https://getbootstrap.com/) - Collection d'outils utiles à la création du design de sites et d'applications web
 -   [GitHub](https://github.com/) - Outil de gestion de versions
--   [GitHub Pages](https://pages.github.com/) - Outil d’hébergement
 -   [Validateur W3C](https://validator.w3.org/) - Outils de détection des erreurs dans le code HTML et CSS
 
 
 ## Maquettes :
 
-Lien des maquettes : https://www.figma.com/design/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0
+Lien des maquettes : https://www.figma.com/file/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0?type=design&node-id=0%3A1&t=23dNyQrjg9DVtnrM-1
 
 ---
 
 ## EN Description:
 
-This is a project carried out as part of the Front-End JavaScript React Developer training program at [OpenClassrooms](https://openclassrooms.com/en/paths/517-javascript-react-developer).
+This is a project carried out as part of the Front-End JavaScript React Developer training program at [OpenClassrooms](https://openclassrooms.com/fr/paths/877-developpeur-dapplication-javascript-react).
 
 > Develop a search algorithm in JavaScript
 >
@@ -110,10 +109,9 @@ That's it!
 -   [Visual Studio Code](https://code.visualstudio.com/) - Text editor
 -   [Bootstrap](https://getbootstrap.com/) - Collection of tools for creating the design of websites and web applications
 -   [GitHub](https://github.com/) - Version control tool
--   [GitHub Pages](https://pages.github.com/) - Hosting tool
 -   [W3C Validator](https://validator.w3.org/) - Tools for detecting errors in HTML and CSS code
 
 
 ## Mockups:
 
-Link to mockups: https://www.figma.com/design/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0
+Link to mockups: https://www.figma.com/file/LY5VQTAqnrAf0bWObOBrt8/Les-petits-plats---Maquette-2.0?type=design&node-id=0%3A1&t=23dNyQrjg9DVtnrM-1
